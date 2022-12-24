@@ -16,5 +16,15 @@ source .venv/bin/activate
 
 # Installs required Python packages.
 echo "W&F: Installing packages..."
-pip3 install -r requirements.txt | grep -v "already satisfied"
+pip3 install -U -r requirements.txt | grep -v "already up-to-date"
+
+# If a log directory doesn't exist, creates one.
+if [ ! -d "logs" ]; then
+	echo "W&F: Creating logs directory..."
+	mkdir logs
+fi
+
+# Runs the Discord bot.
+echo "W&F: Running bot..."
+python3 src/main.py > logs/rpcess.log 2>&1
 
