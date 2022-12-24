@@ -18,6 +18,12 @@ source .venv/bin/activate
 echo "W&F: Installing packages..."
 pip3 install -U -r requirements.txt | grep -v "already up-to-date"
 
+# Checks for a .env file.
+if [ ! -f ".env" ]; then
+	echo "Missing .env file with a TOKEN variable."
+	exit 1
+fi
+
 # If a log directory doesn't exist, creates one.
 if [ ! -d "logs" ]; then
 	echo "W&F: Creating logs directory..."
@@ -26,5 +32,5 @@ fi
 
 # Runs the Discord bot.
 echo "W&F: Running bot..."
-python3 src/main.py > logs/rpcess.log 2>&1
+python3 src/main.py > logs/process.log 2>&1
 
