@@ -5,8 +5,10 @@ from nextcord.ext import commands
 import sys
 
 
+# Initialize the bot.
 bot = commands.Bot()
 
+# Gets the bot's token from the environment.
 try:
 	token = decouple.config("TOKEN")
 except decouple.UndefinedValueError as e:
@@ -16,11 +18,7 @@ except decouple.UndefinedValueError as e:
 
 @bot.event
 async def on_ready():
-	print(f"We have logged in as {bot.user}")
-
-@bot.slash_command(description="My first slash command")
-async def hello(interaction: nextcord.Interaction):
-	await interaction.send("Hello!")
+	bot_logger.info("The bot has successfully logged in.")
 
 
 bot.run(token)
